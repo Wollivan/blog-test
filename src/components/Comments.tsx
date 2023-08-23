@@ -1,12 +1,17 @@
-import getURL, { WEBSITE_URL } from "config";
+import { WEBSITE_URL } from "config";
 import CommentForm from "./CommentForm";
 import { currentUser } from "@clerk/nextjs";
 import type { User } from "@clerk/nextjs/api";
 import Link from "next/link";
 
 export default async function Comments({ slug }: { slug: string }) {
-  const commentsRes = await fetch(getURL(`/api/comments/${slug}`), { next: { revalidate: 5 } });
-  const comments = await commentsRes.json();
+  let comments = [];
+  try {
+    const commentsRes = await fetch(`${WEBSITE_URL}/api/comments/${slug}`, { next: { revalidate: 5 } });
+    comments = await commentsRes.json();
+  } catch (err) {
+    console.log(err);
+  }
 
   const user: User | null = await currentUser();
 
