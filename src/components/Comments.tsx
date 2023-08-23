@@ -1,4 +1,4 @@
-import { WEBSITE_URL } from "config";
+import { WEBSITE_URL } from "@/config";
 import CommentForm from "./CommentForm";
 import { currentUser } from "@clerk/nextjs";
 import type { User } from "@clerk/nextjs/api";
