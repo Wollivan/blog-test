@@ -1,4 +1,5 @@
 "use client";
+
 import { WEBSITE_URL } from "@/config";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
@@ -26,7 +27,7 @@ export default function CommentForm({ slug, username }: { slug: string; username
 
     // make our API call
     const options = { body: formData, method: "POST" };
-    const res = await fetch(`${WEBSITE_URL}/api/comments/${slug}`, options);
+    const res = await fetch(`/api/comments/${slug}`, options);
     console.log(res);
 
     // @ts-ignore
